@@ -1,0 +1,57 @@
+const txtName = document.getElementById("Name");
+const txtNumber = document.getElementById("Number");
+const btnAgregar = document.getElementById("btnAgregar");
+const btnClear = document.getElementById("btnClear");
+
+function validarCantidad(){
+    if(txtNumber.value==0){
+        return false;
+    }//Tenga información
+
+    if(isNaN(txtNumber.value)){
+        return false;
+    }//Tiene qeu ser un número
+
+    if (Number(txtNumber.value)<=0){
+        return false;
+    }//Mayor que 0
+
+    return true;
+}//validarCantidad
+
+const alertValidaciones = document.getElementById("alertValidaciones");
+const alertValidacionesTexto = document.getElementById("alertValidacionesTexto");
+
+
+btnAgregar.addEventListener("click", function(event){
+    event.preventDefault();
+    alertValidacionesTexto.innerHTML="";
+    alertValidaciones.style.display="none";
+    txtName.style.border="";
+    txtNumber.style.border="";
+    //Name
+    //validar que tenga mínimo 3 letras
+    if(txtName.value.length<3){
+        //mensaje de error
+        txtName.style.border="thin red solid";
+        alertValidacionesTexto.innerHTML=
+                "<strong>El Nombre del producto no es correcto</strong>";
+
+        alertValidaciones.style.display="block";
+        // 
+    }//<3
+
+    if(! validarCantidad()){
+        txtName.style.border="thin red solid";
+        alertValidacionesTexto.innerHTML +=
+            "<strong>La cantidad no es correcta</strong>";
+        alertValidaciones.style.display="block";
+
+    }//! validarCantidad
+
+    //Number
+    //TEnga información
+    //Tiene que ser un número
+    //Mayor que 0
+
+}); // btnAgregar Click
